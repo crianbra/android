@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("mensaje", "creando");
         setContentView(R.layout.activity_main);
 
-        final Button button = (Button) findViewById(R.id.button);
+        /*final Button button = (Button) findViewById(R.id.btn_ingreso);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -26,13 +27,35 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent01);
 
             }
-        });/*OPCION PARA LLAMAR OTRA ACTIVIDAD*/
+        });*//*OPCION PARA LLAMAR OTRA ACTIVIDAD*/
+
+        final Button button = (Button) findViewById(R.id.btn_ingreso);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AbrirAcerca();
+
+            }
+        });
+
     }
 
     public void AbrirAcerca() {
         Log.d (tag,"Si llamo a la funcion");
-        Intent intent = new Intent(this, AcercaDe.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, AcercaDe.class);
+        //startActivity(intent);
+
+        TextView u = (TextView) (findViewById(R.id.user));
+        TextView p = (TextView) (findViewById(R.id.pass));
+
+        Intent i01 = new Intent(this, AcercaDe.class);
+        String data [] = new String [2];
+        i01.putExtra("usuario", ""+u.getText());
+        i01.putExtra("password",""+p.getText());
+        startActivity(i01);
+
+
+
     }
 
     @Override
